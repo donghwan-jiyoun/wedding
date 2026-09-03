@@ -170,6 +170,7 @@ const Gallery = () => {
   effect="slide"
   speed={450}
   className="gallery__modal-swiper"
+  preventInteractionOnTransition={true}
   onSlideChange={(swiper) => {
     setSelectedIndex(swiper.activeIndex);
   }}
