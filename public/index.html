@@ -1,18 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <style>
-      #kakaotalk-sharing-btn img{
+      .btn-kakao{
         position: fixed;
         right: 2rem;
         bottom: 2rem;
+        z-index: 10000;
+      }
+
+      .btn-kakao img {
         width: 3rem;
         height: 3rem;
-        z-index: 10000;
       }
     </style>
 
@@ -45,7 +48,7 @@
   Kakao.init('b2a5d69f2b9b01abcafa07657e0704b2');  // 사용하려는 앱의 JavaScript 키 입력
 </script>
 
-<a id="kakaotalk-sharing-btn" href="javascript:;">
+<a id="kakaotalk-sharing-btn" class='btn-kakao' href="javascript:;">
   <img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png"
     alt="카카오톡 공유 보내기 버튼" />
 </a>
