@@ -112,7 +112,6 @@ const Gallery = () => {
                 <img
                   src={image.thumbJpg}
                   alt=""
-                  loading="lazy"
                 />
               </picture>
             </button>
@@ -186,7 +185,6 @@ const Gallery = () => {
                     <img
                       src={image.originalJpg}
                       alt={`${image.index + 1}번째 사진`}
-                      loading="lazy"
                     />
                   </picture>
                 </SwiperSlide>
