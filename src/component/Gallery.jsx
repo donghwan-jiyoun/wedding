@@ -167,11 +167,8 @@ const Gallery = () => {
   modules={[Navigation, EffectFade]}
   initialSlide={selectedIndex}
   navigation
-  effect="fade"
-  fadeEffect={{
-    crossFade: true,
-  }}
-  speed={350}
+  effect="slide"
+  speed={450}
   className="gallery__modal-swiper"
   onSlideChange={(swiper) => {
     setSelectedIndex(swiper.activeIndex);
