@@ -5,6 +5,16 @@
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
+    <style>
+      #kakaotalk-sharing-btn img{
+        position: fixed;
+        right: 2rem;
+        bottom: 2rem;
+        width: 3rem;
+        height: 3rem;
+        z-index: 10000;
+      }
+    </style>
 
 <meta property="og:title" content="동환 & 지윤 결혼을 알립니다 💚"/>
 <meta property="og:type" content="website" />
@@ -47,17 +57,12 @@
     content: {
       title: '동환 🤍 지윤 결혼을 알립니다.',
       imageUrl:
-        'PUBLIC_URL%/preview.jpg',
+        'https://donghwan-jiyoun.github.io/wedding/preview.jpg',
       link: {
         // [앱] > [제품 링크 관리] > [웹 도메인]에서 등록한 사이트 도메인과 일치해야 함
         mobileWebUrl: 'https://donghwan-jiyoun.github.io',
         webUrl: 'https://donghwan-jiyoun.github.io',
       },
-    },
-    social: {
-      likeCount: 286,
-      commentCount: 45,
-      sharedCount: 845,
     },
     buttons: [
       {
