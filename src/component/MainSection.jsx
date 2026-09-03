@@ -134,7 +134,7 @@ const LottiePlayer = "lottie-player";
 /* -------------------------------------------------------------------------- */
 
 export default function MainSection({
-  photoSrc = "/visual_warm.jpg",
+  photoSrc = "visual_warm.jpg",
   photoAlt = "메인 사진",
   overlayColor, // 사진 위에 덮을 색. 없으면 오버레이를 렌더링하지 않음
   subtitle = "the start of our forever",
