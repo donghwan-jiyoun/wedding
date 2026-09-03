@@ -155,7 +155,7 @@ export default function MainSection({
   return (
     <section className={cx("main-section", className)}>
       <div className="main-section__photo">
-        <img className="main-section__photo-img" src={photoSrc} alt={photoAlt} draggable={false} />
+        <img className="main-section__photo-img" src={`${process.env.PUBLIC_URL}/${photoSrc}`} alt={photoAlt} draggable={false} />
         {overlayColor && (
           <div
             className="main-section__photo-overlay"
@@ -192,7 +192,7 @@ export default function MainSection({
 
         <Sticker placement={{ left: "50%", top: "76.4514%", width: "85.86%", aspectRatio: "2.86957 / 1" }}>
           <div className="main-copy-image" aria-hidden="true">
-            <img src="/married.webp" alt="" draggable={false} />
+            <img src={`${process.env.PUBLIC_URL}/married.webp`} alt="" draggable={false} />
           </div>
         </Sticker>
 
