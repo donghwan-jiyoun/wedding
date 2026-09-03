@@ -1,24 +1,21 @@
-import logo from './logo.svg';
+import DearAll from './component/DearAll';
+import MainSection from './component/MainSection';
+import Timeline from './component/Timeline';
+import Interview from './component/Interview';
+import Gallery from './component/Gallery';
+import Wedding from './component/Wedding';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <article className="donghwan-jiyoun">
+      <MainSection />
+      <DearAll />
+      <Gallery />
+      <Timeline />
+      <Interview />
+      <Wedding />
+    </article>
   );
 }
 

@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap');
+
+
+// -----------------------------------------------------------------------------
+// 변수
+// -----------------------------------------------------------------------------
+
+// 이 디자인이 그려진 기준 캔버스 폭(px). 스티커 좌표(%)와 글자 크기의 기준입니다.
+$canvas-width: 430;
+// 기준 캔버스에서의 1em 크기(px, 숫자만). 스티커 글자 크기(0.8em, 2.7em …)의 기준입니다.
+$canvas-em: 10;
+
+$sticker-color: #b7cfaa;
+
+// 폰트 폴백 스택 — 프로젝트에 이미 폰트 유틸 클래스가 있다면
+// 아래 "폰트" 블록을 지우고 TSX 의 font-* 값만 기존 클래스명으로 바꾸면 됩니다.
+
+$anim-duration: 0.55s;
+$anim-easing: cubic-bezier(0.22, 1, 0.36, 1);
+
+// -----------------------------------------------------------------------------
+// 섹션
+// -----------------------------------------------------------------------------
+.main-section {
+  --wedding-accent: rgb(183, 207, 170);
+  position: relative;
+  user-select: none;
+  // 가장자리에 걸친 꽃/잎 스티커가 가로 스크롤을 만들지 않도록 클리핑
+  overflow: hidden;
+  // 스티커 글자 크기를 섹션 폭에 비례시키기 위한 컨테이너
+  container-type: inline-size;
+
+  &__photo {
+    position: relative;
+    width: 100%;
+  }
+
+  &__photo-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  // 사진 위 색 오버레이 (overlayColor prop 을 넘겼을 때만 렌더링)
+  &__photo-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  // 스티커가 올라가는 레이어
+  &__stickers {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    color: var(--wedding-accent);
+
+    // ── 글자 크기 기준점 ─────────────────────────────────────────────
+    // 스티커의 font-size 는 em 이라 이 값이 1em 이 됩니다.
+    // 기준 폭(430px)에서 10px 이 되고, 섹션 폭에 비례해 함께 커지고 작아집니다.
+    font-size: #{$canvas-em}px; // 컨테이너 쿼리 미지원 브라우저 폴백
+    font-size: calc(100cqw * #{$canvas-em} / #{$canvas-width});
+  }
+}
+
+// -----------------------------------------------------------------------------
+// 스티커
+// 인라인으로 받는 값: left / top / width / aspect-ratio /
+//                    --sticker-rotation / --sticker-x-anchor / --sticker-flip-x
+// -----------------------------------------------------------------------------
+.sticker {
+  position: absolute;
+  transform: translate(var(--sticker-x-anchor, -50%), -50%) rotate(var(--sticker-rotation, 0deg));
+
+  &__text {
+    display: block;
+    white-space: pre;
+    color: var(--wedding-accent);
+
+    &--center { text-align: center; }
+    &--right  { text-align: right; }
+  }
+
+  // 한 글자씩 순차 등장하는 이름
+  &__char {
+    display: inline-block;
+  }
+
+  // 꽃·잎·화살표 아이콘(SVG). 색은 아이콘 컴포넌트에 이미 들어가 있습니다.
+  &__icon {
+    display: block;
+    width: 100%;
+    height: auto;
+    transform: scale(var(--sticker-flip-x, 1), var(--sticker-flip-y, 1));
+  }
+
+  &__lottie {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+}
+
+.main-copy-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    user-select: none;
+    pointer-events: none;
+    color: var(--wedding-accent);
+    mix-blend-mode: multiply;
+    filter: brightness(0) saturate(100%) invert(77%) sepia(18%) saturate(440%) hue-rotate(57deg) brightness(95%) contrast(90%) drop-shadow(0 8px 10px rgba(120, 140, 116, 0.08));
+  }
+}
+
+// -----------------------------------------------------------------------------
+// 폰트
+// -----------------------------------------------------------------------------
+.font-nunito,
+.font-montserrat,
+.v2-en,
+.main-copy-text,
+.main-sticker-node--bride-name,
+.main-sticker-node--groom-name {
+  font-weight: 600;
+}
+
+
+.name-sticker,
+.name-sticker__char {
+  font-family: "Caveat", cursive;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
+// -----------------------------------------------------------------------------
+// 애니메이션
+// - 등장 계열은 animation-fill-mode: both 로 지연 구간 동안 숨김을 유지합니다.
+// - 반복 계열(rotate/pulse)은 음수 delay 로 시작 위상만 서로 어긋나게 합니다.
+// -----------------------------------------------------------------------------
+%anim-enter {
+  animation-duration: $anim-duration;
+  animation-timing-function: $anim-easing;
+  animation-fill-mode: both;
+}
+
+.sticker--fade-in {
+  @extend %anim-enter;
+  animation-name: sticker-fade-in;
+}
+
+.sticker__text--slide-up {
+  @extend %anim-enter;
+  animation-name: sticker-slide-up;
+}
+
+.sticker__text--blur-in {
+  @extend %anim-enter;
+  animation-name: sticker-blur-in;
+}
+
+.sticker__char {
+  @extend %anim-enter;
+  animation-name: sticker-zoom-in;
+}
+
+.sticker__icon--rotate {
+  animation: sticker-rotate 40s linear infinite;
+}
+
+.sticker__icon--pulse {
+  animation: sticker-pulse 2.6s ease-in-out infinite;
+}
+
+@keyframes sticker-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes sticker-slide-up {
+  from { opacity: 0; transform: translateY(0.8em); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes sticker-blur-in {
+  from { opacity: 0; filter: blur(0.25em); }
+  to   { opacity: 1; filter: blur(0); }
+}
+
+@keyframes sticker-zoom-in {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+// 좌우 반전(--sticker-flip-x)이 걸린 아이콘도 유지되도록 scale 을 함께 선언
+@keyframes sticker-rotate {
+  from { transform: scale(var(--sticker-flip-x, 1), var(--sticker-flip-y, 1)) rotate(0deg); }
+  to   { transform: scale(var(--sticker-flip-x, 1), var(--sticker-flip-y, 1)) rotate(360deg); }
+}
+
+@keyframes sticker-pulse {
+  0%, 100% { transform: scale(var(--sticker-flip-x, 1), var(--sticker-flip-y, 1)); }
+  50%      { transform: scale(calc(var(--sticker-flip-x, 1) * 1.08), calc(var(--sticker-flip-y, 1) * 1.08)); }
+}
+
+// 접근성: 모션 최소화 설정 존중
+@media (prefers-reduced-motion: reduce) {
+  .sticker--fade-in,
+  .sticker__text--slide-up,
+  .sticker__text--blur-in,
+  .sticker__char,
+  .sticker__icon--rotate,
+  .sticker__icon--pulse {
+    animation: none !important;
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+}

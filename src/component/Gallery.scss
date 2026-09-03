@@ -1,0 +1,302 @@
+.gallery {
+  padding: 6rem 0 10rem;
+
+  &__inner {
+    width: 100%;
+    max-width: 42rem;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+    box-sizing: border-box;
+  }
+
+  // ─────────────────────────────
+  // Gallery Grid
+  // ─────────────────────────────
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  &__thumb {
+    position: relative;
+    display: block;
+
+    width: 100%;
+    aspect-ratio: 1 / 1;
+
+    padding: 0;
+    margin: 0;
+
+    border: 0;
+    border-radius: 0;
+
+    overflow: hidden;
+
+    background: #f3f3f3;
+
+    cursor: pointer;
+    appearance: none;
+    -webkit-tap-highlight-color: transparent;
+
+    picture {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    img {
+      display: block;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+
+      transition:
+        transform 0.45s cubic-bezier(0.2, 0.6, 0.2, 1),
+        opacity 0.3s ease;
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        img {
+          transform: scale(1.04);
+        }
+      }
+    }
+
+    &:active {
+      img {
+        opacity: 0.9;
+      }
+    }
+  }
+
+  // ─────────────────────────────
+  // Modal
+  // ─────────────────────────────
+
+  &__modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 2rem;
+
+    box-sizing: border-box;
+
+    background: rgba(15, 15, 15, 0.92);
+
+    animation: galleryModalFadeIn 0.2s ease-out;
+  }
+
+  // 이미지가 들어가는 영역 자체를 고정
+  &__modal-content {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: min(100%, 36rem);
+    height: min(100%, 52rem);
+  }
+
+  // ─────────────────────────────
+  // Modal Swiper
+  // ─────────────────────────────
+&__modal-swiper {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+  .swiper-wrapper {
+    margin: 0;
+    padding: 0;
+  }
+
+  .swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    picture {
+      display: block;
+
+      width: 100%;
+
+      margin: 0;
+      padding: 0;
+    }
+
+    img {
+      display: block;
+
+      width: 100%;
+      height: auto;
+
+      margin: 0;
+      padding: 0;
+
+
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 2.75rem;
+    height: 2.75rem;
+
+    margin: 0;
+
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, 0.1);
+
+    color: #fff;
+
+    &::after {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    svg {
+      width: 50%;
+      height: 50%;
+    }
+  }
+
+  .swiper-button-prev {
+    left: 1rem;
+  }
+
+  .swiper-button-next {
+    right: 1rem;
+  }
+
+  .swiper-button-disabled {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+  // ─────────────────────────────
+  // Modal Close
+  // ─────────────────────────────
+
+  &__modal-close {
+    position: absolute;
+
+    top: 1rem;
+    right: 1rem;
+
+    z-index: 10;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 2.75rem;
+    height: 2.75rem;
+
+    padding: 0;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, 0.1);
+
+    color: #fff;
+
+    cursor: pointer;
+    appearance: none;
+    -webkit-tap-highlight-color: transparent;
+
+    transition: background-color 0.2s ease;
+
+    &:active {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    svg {
+      display: block;
+    }
+  }
+
+  // ─────────────────────────────
+  // Modal Counter
+  // ─────────────────────────────
+
+  &__modal-counter {
+    position: absolute;
+
+    right: 1rem;
+    bottom: 1rem;
+    padding: 0.5rem 1rem;
+
+    z-index: 10;
+
+    display: flex;
+    align-items: center;
+
+    gap: 0.25rem;
+
+    margin: 0;
+
+    color: rgba(255, 255, 255, 0.8);
+
+    font-size: 1.1rem;
+    font-weight: 400;
+    line-height: 1;
+
+    user-select: none;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 3rem;
+  }
+
+  &__modal-current {
+    color: #fff;
+    font-weight: 500;
+  }
+
+  &__modal-divider {
+    color: rgba(255, 255, 255, 0.45);
+  }
+}
+
+// ─────────────────────────────
+// Modal Animation
+// ─────────────────────────────
+
+@keyframes galleryModalFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,100 @@
+.intro-letter {
+    padding: 6rem 2rem;
+      font-family: 'Ridibatang';
+}
+
+.letter-box * {
+  color: #333;
+  text-align: center;
+  font-size: 1.15rem;
+  font-weight: 300;
+  line-height: 1.8;
+
+}
+
+
+.letter-box p~p {
+  margin-top: 1.5rem;
+}
+
+.our-story {
+  position: relative;
+  margin-top: 3.5rem;
+}
+
+.our-story__list {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.our-story__item {
+    text-align: center;
+}
+
+.our-story__photo-wrap {
+  width: 10rem;
+  height: 13rem;;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  background: #f2efe9;
+}
+
+.our-story__item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.our-story__name {
+  margin-top: 1.2rem;
+  font-size: 1.15rem;
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+
+  span {
+    color: #333;
+  }
+}
+
+.our-story__name--groom {
+  color: #3d6fb0;
+}
+
+.our-story__name--bride {
+  color: #d1638e;
+}
+
+.our-story__meta {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.our-story__meta-text {
+  display: none;
+}
+
+.our-story__meta-text {
+  font-size: inherit;
+}
+
+.our-story__heart {
+  color: #6aa77c;
+  font-size: 1.15rem;
+  line-height: 1;
+}
+

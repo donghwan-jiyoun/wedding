@@ -1,38 +1,57 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Patrick+Hand&display=swap');
+
+@font-face {
+  font-family: 'Ridibatang';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
+  font-weight: normal;
+  font-display: swap;
+}
+
+html {
+  /* 모바일: 375px에서 10px. 화면이 커질수록 rem도 같이 커집니다. */
+  font-size: calc(200vw / 75);
+}
+
+body {
+  background: #eee;
+  font-size: inherit;
+}
+
+.donghwan-jiyoun {
+  max-width: 375px;
+  margin: 0 auto;
+  background: #fff;
+  overflow: hidden;
+}
+
+.donghwan-jiyoun h2 {
+  margin-bottom: 2.5rem;
+  /* color: rgba(183, 207, 170); */
+  color: rgba(119, 157, 103, 0.9);
+  font-family: 'Ridibatang', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+/* 큰 폰: 카드가 480px에 걸린 뒤에도 rem이 계속 커지지 않게 고정 */
+@media screen and (min-width: 375px) {
+  html {
+    font-size: 10px;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* 태블릿: 메인 섹션 캔버스(430px)와 같은 비율로 모바일 느낌을 유지 */
+@media screen and (min-width: 768px) and (max-width: 1366px) {
+  html {
+    font-size: calc(750px / 75);
   }
-  to {
-    transform: rotate(360deg);
+
+  .donghwan-jiyoun {
+    max-width: 375px;
+  }
+}
+
+@media screen and (min-width: 1367px) {
+  html {
+    font-size: 10px;
   }
 }
