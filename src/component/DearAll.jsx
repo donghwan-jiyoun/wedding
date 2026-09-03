@@ -50,13 +50,13 @@ export default function DearAll() {
       <ul className="our-story__list">
         <li className="our-story__item">
           <div className="our-story__photo-wrap">
-            <img src="/donghwan.jpg" alt="김동환" draggable={false} />
+            <img src={process.env.PUBLIC_URL + '/donghwan.jpg'} alt="김동환" draggable={false} />
           </div>
           <div className="our-story__name our-story__name--groom">신랑 <span>김동환</span></div>
         </li>
         <li className="our-story__item">
           <div className="our-story__photo-wrap">
-            <img src="/jiyoun.jpg" alt="강지윤" draggable={false} />
+            <img src={process.env.PUBLIC_URL + '/jiyoun.jpg'} alt="강지윤" draggable={false} />
           </div>
           <div className="our-story__name our-story__name--bride">신부 <span>강지윤</span></div>
         </li>

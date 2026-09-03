@@ -59,7 +59,7 @@ export default function Timeline() {
             >
               <div className="timeline__wrapper">
                 <div className="timeline__image-container">
-                  <img src={item.image} alt={item.title} draggable={false} className="timeline__image" />
+                  <img src={`${process.env.PUBLIC_URL}${item.image}`} alt={item.title} draggable={false} className="timeline__image" />
                 </div>
 
                 <div className="timeline__text-container">

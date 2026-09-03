@@ -14,11 +14,11 @@ const IMAGES = Array.from({ length: 12 }, (_, i) => ({
   id: i + 1,
   index: i,
 
-  thumbWebp: `/gallery/thumb/gallery${i + 1}.webp`,
-  thumbJpg: `/gallery/thumb/gallery${i + 1}.jpg`,
+  thumbWebp: `${process.env.PUBLIC_URL}/gallery/thumb/gallery${i + 1}.webp`,
+  thumbJpg: `${process.env.PUBLIC_URL}/gallery/thumb/gallery${i + 1}.jpg`,
 
-  originalWebp: `/gallery/original/gallery${i + 1}.webp`,
-  originalJpg: `/gallery/original/gallery${i + 1}.jpg`,
+  originalWebp: `${process.env.PUBLIC_URL}/gallery/original/gallery${i + 1}.webp`,
+  originalJpg: `${process.env.PUBLIC_URL}/gallery/original/gallery${i + 1}.jpg`,
 }));
 
 const Gallery = () => {
