@@ -2,6 +2,31 @@
   padding: 6rem 2rem 8.5rem;
   background: #fff;
   text-align: center;
+
+  h2,
+  .interview__section,
+  .img-container {
+    opacity: 0;
+    transform: translateY(2rem);
+    transition:
+      opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  h2.is-visible,
+  .interview__section.is-visible,
+  .img-container.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .interview__section:nth-of-type(2) {
+    transition-delay: 0.08s;
+  }
+
+  .img-container {
+    transition-delay: 0.1s;
+  }
 }
 
 .interview__section {

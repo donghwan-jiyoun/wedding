@@ -1,5 +1,23 @@
 .gallery {
   padding: 6rem 0 10rem;
+  h2,
+  .gallery__grid {
+    opacity: 0;
+    transform: translateY(2rem);
+    transition:
+      opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  h2.is-visible,
+  .gallery__grid.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .gallery__grid {
+    transition-delay: 0.1s;
+  }
 
   &__inner {
     width: 100%;

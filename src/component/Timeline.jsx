@@ -1,4 +1,6 @@
+
 import "./Timeline.scss";
+import useScrollReveal from "../hooks/useScrollReveal";
 
 const START_DATE = new Date("2022-01-02T00:00:00");
 const MARRIED_DATE = new Date("2025-12-12T00:00:00");
@@ -44,10 +46,26 @@ description: `부부가 된 지 ${getDaysMarried()}일`,
   },
 ];
 
+
 export default function Timeline() {
+  const titleRef = useScrollReveal();
+
+  const item1Ref = useScrollReveal();
+  const item2Ref = useScrollReveal();
+  const item3Ref = useScrollReveal();
+  const item4Ref = useScrollReveal();
+
+  const itemRefs = [
+    item1Ref,
+    item2Ref,
+    item3Ref,
+    item4Ref,
+  ];
+
   return (
     <section className="timeline">
-      <h2>TIMELINE</h2>
+      <h2 ref={titleRef}>TIMELINE</h2>
+
       <div className="timeline__body">
         <div className="timeline__rail" aria-hidden="true" />
 
@@ -55,17 +73,35 @@ export default function Timeline() {
           {TIMELINE_ITEMS.map((item, index) => (
             <li
               key={item.date}
-              className={`timeline__item timeline__item--${index % 2 === 0 ? "left" : "right"}`}
+              ref={itemRefs[index]}
+              className={`timeline__item timeline__item--${
+                index % 2 === 0 ? "left" : "right"
+              }`}
             >
               <div className="timeline__wrapper">
                 <div className="timeline__image-container">
-                  <img src={`${process.env.PUBLIC_URL}${item.image}`} alt={item.title} draggable={false} className="timeline__image" />
+                  <img
+                    src={`${process.env.PUBLIC_URL}${item.image}`}
+                    alt={item.title}
+                    draggable={false}
+                    className="timeline__image"
+                  />
                 </div>
 
                 <div className="timeline__text-container">
-                  <span className="timeline__date">{item.date}</span>
-                  <h3 className="timeline__title">{item.title}</h3>
-                  {item.description && <p className="timeline__description">{item.description}</p>}
+                  <span className="timeline__date">
+                    {item.date}
+                  </span>
+
+                  <h3 className="timeline__title">
+                    {item.title}
+                  </h3>
+
+                  {item.description && (
+                    <p className="timeline__description">
+                      {item.description}
+                    </p>
+                  )}
                 </div>
               </div>
             </li>

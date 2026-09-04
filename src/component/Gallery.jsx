@@ -1,12 +1,11 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import useScrollReveal from "../hooks/useScrollReveal";
 
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
-
-import 'swiper/css';
-import 'swiper/css/navigation';
-
-import './Gallery.scss';
+import "swiper/css";
+import "swiper/css/navigation";
+import "./Gallery.scss";
 
 const IMAGES = Array.from({ length: 12 }, (_, i) => ({
   id: i + 1,
@@ -23,87 +22,68 @@ const Gallery = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  /**
-   * 썸네일 클릭
-   */
+  const titleRef = useScrollReveal();
+  const gridRef = useScrollReveal();
+
   const handleThumbnailClick = useCallback((index) => {
     setSelectedIndex(index);
     setIsModalOpen(true);
   }, []);
 
-  /**
-   * 모달 닫기
-   */
   const handleCloseModal = useCallback(() => {
     setIsModalOpen(false);
   }, []);
 
-  /**
-   * 모달 바깥 영역 클릭 시 닫기
-   */
   const handleModalClick = useCallback((e) => {
     if (e.target === e.currentTarget) {
       setIsModalOpen(false);
     }
   }, []);
 
-  /**
-   * 모달 열려 있을 때 배경 스크롤 방지
-   * 현재 스크롤 위치를 기억하고 body를 고정한 뒤,
-   * 모달이 닫히면 기존 위치로 복귀
-   */
   useEffect(() => {
     if (!isModalOpen) return;
 
     const scrollY = window.scrollY;
 
-    document.body.style.position = 'fixed';
+    document.body.style.position = "fixed";
     document.body.style.top = `-${scrollY}px`;
-    document.body.style.left = '0';
-    document.body.style.right = '0';
-    document.body.style.width = '100%';
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
 
     return () => {
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.left = '';
-      document.body.style.right = '';
-      document.body.style.width = '';
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
 
       window.scrollTo(0, scrollY);
     };
   }, [isModalOpen]);
 
-  /**
-   * ESC 키로 모달 닫기
-   */
   useEffect(() => {
     if (!isModalOpen) return;
 
     const handleKeyDown = (e) => {
-      if (e.key === 'Escape') {
+      if (e.key === "Escape") {
         setIsModalOpen(false);
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener("keydown", handleKeyDown);
     };
   }, [isModalOpen]);
 
   return (
     <section className="gallery">
       <div className="gallery__inner">
+        <h2 ref={titleRef}>GALLERY</h2>
 
-        {/* 타이틀 */}
-        <h2>
-          GALLERY
-        </h2>
-
-        {/* 갤러리 */}
-        <div className="gallery__grid">
+        <div ref={gridRef} className="gallery__grid">
           {IMAGES.map((image) => (
             <button
               key={image.id}
@@ -118,18 +98,13 @@ const Gallery = () => {
                   type="image/webp"
                 />
 
-                <img
-                  src={image.thumbJpg}
-                  alt=""
-                />
+                <img src={image.thumbJpg} alt="" />
               </picture>
             </button>
           ))}
         </div>
-
       </div>
 
-      {/* 이미지 확대 모달 */}
       {isModalOpen && (
         <div
           className="gallery__modal"
@@ -139,8 +114,6 @@ const Gallery = () => {
           aria-label="사진 크게 보기"
         >
           <div className="gallery__modal-content">
-
-            {/* 닫기 */}
             <button
               type="button"
               className="gallery__modal-close"
@@ -160,7 +133,6 @@ const Gallery = () => {
                   strokeWidth="1.5"
                   strokeLinecap="round"
                 />
-
                 <path
                   d="M19 5L5 19"
                   stroke="currentColor"
@@ -170,12 +142,10 @@ const Gallery = () => {
               </svg>
             </button>
 
-            {/* 확대 이미지 Swiper */}
             <Swiper
               modules={[Navigation]}
               initialSlide={selectedIndex}
               navigation
-              effect="slide"
               speed={450}
               className="gallery__modal-swiper"
               preventInteractionOnTransition={true}
@@ -200,21 +170,13 @@ const Gallery = () => {
               ))}
             </Swiper>
 
-            {/* 페이지 번호 */}
             <p className="gallery__modal-counter">
               <span className="gallery__modal-current">
                 {selectedIndex + 1}
               </span>
-
-              <span className="gallery__modal-divider">
-                /
-              </span>
-
-              <span>
-                {IMAGES.length}
-              </span>
+              <span className="gallery__modal-divider">/</span>
+              <span>{IMAGES.length}</span>
             </p>
-
           </div>
         </div>
       )}

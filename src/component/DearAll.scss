@@ -1,6 +1,31 @@
 .intro-letter {
-    padding: 6rem 2rem;
-      font-family: 'Ridibatang';
+  padding: 6rem 2rem;
+  font-family: 'Ridibatang';
+
+  h2,
+  .letter-box,
+  .our-story {
+    opacity: 0;
+    transform: translateY(2rem);
+    transition:
+      opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  h2.is-visible,
+  .letter-box.is-visible,
+  .our-story.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .letter-box {
+    transition-delay: 0.08s;
+  }
+
+  .our-story {
+    transition-delay: 0.12s;
+  }
 }
 
 .letter-box * {
@@ -34,12 +59,13 @@
 }
 
 .our-story__item {
-    text-align: center;
+  text-align: center;
 }
 
 .our-story__photo-wrap {
   width: 10rem;
-  height: 13rem;;
+  height: 13rem;
+  ;
   overflow: hidden;
   border-radius: 1.25rem;
   background: #f2efe9;
@@ -97,4 +123,3 @@
   font-size: 1.15rem;
   line-height: 1;
 }
-

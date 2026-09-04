@@ -3,6 +3,21 @@
   padding: 6rem 2rem;
   background: #f3f6f3;
 
+    h2,
+  .timeline__item {
+    opacity: 0;
+    transform: translateY(2rem);
+    transition:
+      opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  h2.is-visible,
+  .timeline__item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   &::before,
   &::after {
     content: '';
