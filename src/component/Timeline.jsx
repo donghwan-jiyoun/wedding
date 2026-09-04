@@ -38,7 +38,7 @@ const TIMELINE_ITEMS = [
     image: "/timeline1.gif",
   },
   {
-    date: "2026.04.06 ~ ",
+    date: "2026.04.06 ",
     title: "신혼여행",
     description: "7박 9일 런던. 우승 시즌 🏆 아스날 경기 관람",
     image: "/timeline2.gif",
