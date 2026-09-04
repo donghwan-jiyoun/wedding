@@ -1,12 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
 
-
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, EffectFade } from 'swiper/modules';
+import { Navigation } from 'swiper/modules';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
-import 'swiper/css/effect-fade';
 
 import './Gallery.scss';
 
@@ -51,17 +49,28 @@ const Gallery = () => {
 
   /**
    * 모달 열려 있을 때 배경 스크롤 방지
+   * 현재 스크롤 위치를 기억하고 body를 고정한 뒤,
+   * 모달이 닫히면 기존 위치로 복귀
    */
   useEffect(() => {
-    if (!isModalOpen) {
-      document.body.style.overflow = '';
-      return;
-    }
+    if (!isModalOpen) return;
 
-    document.body.style.overflow = 'hidden';
+    const scrollY = window.scrollY;
+
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
 
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.width = '';
+
+      window.scrollTo(0, scrollY);
     };
   }, [isModalOpen]);
 
@@ -163,17 +172,17 @@ const Gallery = () => {
 
             {/* 확대 이미지 Swiper */}
             <Swiper
-  modules={[Navigation, EffectFade]}
-  initialSlide={selectedIndex}
-  navigation
-  effect="slide"
-  speed={450}
-  className="gallery__modal-swiper"
-  preventInteractionOnTransition={true}
-  onSlideChange={(swiper) => {
-    setSelectedIndex(swiper.activeIndex);
-  }}
->
+              modules={[Navigation]}
+              initialSlide={selectedIndex}
+              navigation
+              effect="slide"
+              speed={450}
+              className="gallery__modal-swiper"
+              preventInteractionOnTransition={true}
+              onSlideChange={(swiper) => {
+                setSelectedIndex(swiper.activeIndex);
+              }}
+            >
               {IMAGES.map((image) => (
                 <SwiperSlide key={`modal-${image.id}`}>
                   <picture>
