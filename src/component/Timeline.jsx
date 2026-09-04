@@ -19,15 +19,13 @@ function getToday() {
 function getDaysTogether() {
   const now = new Date();
   const diffMs = now.getTime() - START_DATE.getTime();
-
-  return Math.floor(diffMs / (1000 * 60 * 60 * 24));
+  return Math.floor(diffMs / (1000 * 60 * 60 * 24)) + 1;
 }
 
 function getDaysMarried() {
   const now = new Date();
   const diffMs = now.getTime() - MARRIED_DATE.getTime();
-
-  return Math.floor(diffMs / (1000 * 60 * 60 * 24));
+  return Math.floor(diffMs / (1000 * 60 * 60 * 24)) + 1;
 }
 
 const TIMELINE_ITEMS = [
