@@ -34,7 +34,7 @@ const TIMELINE_ITEMS = [
   {
     date: "2025.12.12",
     title: "혼인신고",
-    description: "결혼기념일이 된 12월 12일",
+    description: "우리의 결혼기념일 12월 12일",
     image: "/timeline1.gif",
   },
   {
@@ -46,7 +46,7 @@ const TIMELINE_ITEMS = [
   {
     date: "2026.05.22",
     title: "웨딩촬영",
-    description: "이것저것 쉽지 않았던..!",
+    description: "가장 마지막 일정이었던 웨딩촬영",
     image: "/timeline3.gif",
   },
   {
