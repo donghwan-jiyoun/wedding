@@ -5,6 +5,17 @@ import useScrollReveal from "../hooks/useScrollReveal";
 const START_DATE = new Date("2022-01-02T00:00:00");
 const MARRIED_DATE = new Date("2025-12-12T00:00:00");
 
+function getToday() {
+  const today = new Date();
+
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const day = String(today.getDate()).padStart(2, "0");
+
+  return `${year}.${month}.${day}`;
+}
+
+
 function getDaysTogether() {
   const now = new Date();
   const diffMs = now.getTime() - START_DATE.getTime();
@@ -27,19 +38,19 @@ const TIMELINE_ITEMS = [
     image: "/timeline1.gif",
   },
   {
-    date: "2026.04.01",
-    title: "런던 신혼여행",
-    description: "우승시즌 아스날 경기 관람",
+    date: "2026.04.06 ~ ",
+    title: "신혼여행",
+    description: "7박 9일 런던. 우승 시즌 🏆 아스날 경기 관람",
     image: "/timeline2.gif",
   },
   {
     date: "2026.05.22",
     title: "웨딩촬영",
-    description: "이것저것 쉽지 않았던 웨딩촬영..!",
+    description: "이것저것 쉽지 않았던..!",
     image: "/timeline3.gif",
   },
   {
-    date: "2026.09.02",
+    date: `${getToday()}`,
     title: `함께한지 ${getDaysTogether()}일`,
 description: `부부가 된 지 ${getDaysMarried()}일`,
     image: "/timeline4.gif",
